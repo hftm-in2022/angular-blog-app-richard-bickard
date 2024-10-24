@@ -101,4 +101,6 @@ Führe dann das Skript aus:
 
 `npx husky .husky/pre-commit "npx lint-staged"`
 
+
+
 Detaillierte Informationen zur Husky-Integration findest du in der Husky-Dokumentation.
