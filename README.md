@@ -101,6 +101,89 @@ Führe dann das Skript aus:
 
 `npx husky .husky/pre-commit "npx lint-staged"`
 
-
-
 Detaillierte Informationen zur Husky-Integration findest du in der Husky-Dokumentation.
+
+## Aufgabe:Erstellen einer Demo App mittels Angular Material
+
+# Projektübersicht
+
+Dies ist eine Demo-Blog-Anwendung in Angular, erstellt von **Richard Bickard**. Das Projekt veranschaulicht verschiedene Angular-Konzepte wie:
+
+-   Verwendung von Angular Material Components
+-   Event-Binding mit `(click)`
+-   Strukturelle Direktiven wie `*ngIf`, `*ngSwitch` und `*ngFor`
+-   Dynamisches Klassen- und Stil-Binding mit `ngClass` und `ngStyle`
+-   Zwei-Wege-Datenbindung mit `NgModel`
+-   Ein Button zur Weiterleitung zu einem externen Repository
+
+## Funktionen
+
+### Implementierte Angular-Konzepte:
+
+1.  **Angular Material Components**: Das Projekt verwendet Angular Material-Komponenten wie Toolbar, Card und Buttons.
+2.  **Event-Binding**: Das `(click)`-Event-Binding wird verwendet, um verschiedene Aktionen auszulösen, wie das Umschalten der Sichtbarkeit und das Ändern von Farben.
+3.  **Strukturelle Direktiven**:
+    -   `*ngIf` wird verwendet, um Inhalte bedingt anzuzeigen.
+    -   `*ngSwitch` wird verwendet, um Inhalte basierend auf dem aktuellen Status dynamisch zu wechseln.
+    -   `*ngFor` wird verwendet, um eine Liste von Elementen durchzugehen und anzuzeigen.
+4.  **Dynamisches Klassen- und Stil-Binding**: `ngClass` und `ngStyle` werden verwendet, um das Erscheinungsbild von Elementen basierend auf dem Zustand der Komponente dynamisch zu ändern.
+5.  **Zwei-Wege-Datenbindung**: `NgModel` wird für Benutzereingaben implementiert, um eine Echtzeit-Datenbindung zwischen Ansicht und Komponente zu ermöglichen.
+
+## Projekt-Setup
+
+### Voraussetzungen
+
+-   **Node.js**: Stelle sicher, dass Node.js installiert ist. Du kannst es [hier herunterladen](https://nodejs.org/).
+-   **Angular CLI**: Installiere Angular CLI global, falls noch nicht geschehen:
+    
+    bash
+    
+    Code kopieren
+    
+    `npm install -g @angular/cli` 
+    
+
+### Installation
+
+1.  **Repository klonen**:
+    
+    bash
+    
+    Code kopieren
+    
+    `git clone https://github.com/hftm-in2022/angular-blog-app-richard-bickard.git` 
+    
+2.  **Wechsle in das Projektverzeichnis**:
+    
+    bash
+    
+    Code kopieren
+    
+    `cd angular-blog-app-richard-bickard` 
+    
+3.  **Installiere die Abhängigkeiten**:
+    
+    bash
+    
+    Code kopieren
+    
+    `npm install` 
+    
+4.  **Starte die Anwendung**:
+    
+    bash
+    
+    Code kopieren
+    
+    `ng serve` 
+    
+    Gehe dann im Browser zu `http://localhost:4200/`, um die Anwendung zu sehen.
+    
+
+## Features im Detail
+
+1.  **Toggle Visibility**: Schaltet die Sichtbarkeit von bestimmten Inhalten um und zeigt an, ob der Benutzer online oder offline ist.
+2.  **Change Color**: Ändert die Farbe eines visuellen Indikators (z. B. ein Lämpchen) zufällig.
+3.  **Liste anzeigen**: Zeigt eine Liste von Aufgaben dynamisch an.
+4.  **Dynamische Klasse und Stile**: Verwendet `ngClass`, um Klassen basierend auf Benutzereingaben zu ändern, und `ngStyle`, um die Hintergrundfarbe eines Elements dynamisch anzupassen.
+5.  **Zwei-Wege-Datenbindung**: Ein Eingabefeld ermöglicht es, den Namen eines Benutzers einzugeben und ihn in Echtzeit anzuzeigen.
