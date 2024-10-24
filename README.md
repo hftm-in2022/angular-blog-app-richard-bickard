@@ -41,7 +41,9 @@ Prettier formatiert deinen Code automatisch und sorgt dafür, dass er immer den 
 
 Ergänze folgendes Skript in deiner package.json, um den Code im src/app-Verzeichnis automatisch zu formatieren:
 
-`"scripts": { "format": "npx prettier --write ./src/app/*" }`
+```"scripts": { 
+    "format": "npx prettier --write ./src/app/*" 
+}```
 
 **4. Umgebungen (Environments) in Angular verwalten**
 
