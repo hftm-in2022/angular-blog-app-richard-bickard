@@ -11,7 +11,8 @@
     "test": "ng test",
     "serve:ssr:angular-blog-app-richard-bickard": "node dist/angular-blog-app-richard-bickard/server/server.mjs",
     "lint": "ng lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {
