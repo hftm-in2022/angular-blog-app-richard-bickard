@@ -1,7 +1,9 @@
 <mat-toolbar color="primary">My Angular App</mat-toolbar>
 
 <mat-card class="card">
-  <mat-card-title><h1>{{ title}}</h1> </mat-card-title>
+  <mat-card-title
+    ><h1>{{ title }}</h1>
+  </mat-card-title>
   <mat-card-content>
     <button mat-raised-button color="accent" (click)="handleClick()">
       Zum Repository! Klicke hier!
@@ -41,7 +43,7 @@
     [ngClass]="{
       bold: isBold,
       italic: isItalic,
-      underline: isUnderlined
+      underline: isUnderlined,
     }"
   >
     HFTM - Webprogrammieren

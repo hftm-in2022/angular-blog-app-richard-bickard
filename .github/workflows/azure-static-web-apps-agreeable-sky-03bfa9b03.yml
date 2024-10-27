@@ -33,6 +33,7 @@ jobs:
         run: |
           npm run lint
           npm run format:check
+          npm run format:write
 
       - name: Run Tests
         run: npm run test:ci
@@ -41,7 +42,7 @@ jobs:
         run: |
           npx npm-check-updates || true
           npm outdated || true
-          
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
