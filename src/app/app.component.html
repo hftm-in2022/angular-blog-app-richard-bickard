@@ -1,20 +1,20 @@
-<mat-toolbar color="primary">
-  My Angular App
-</mat-toolbar>
+<mat-toolbar color="primary"> My Angular App </mat-toolbar>
 
 <mat-card>
   <mat-card-title>Reponame: {{ title }}</mat-card-title>
-  <mat-card-content>
-
-  </mat-card-content>
-  <button mat-raised-button color="accent" (click)="handleClick()">Zum Repository! Klicke hier!</button>
+  <mat-card-content> </mat-card-content>
+  <button mat-raised-button color="accent" (click)="handleClick()">
+    Zum Repository! Klicke hier!
+  </button>
 </mat-card>
 
 <!-- ngIf und ngSwitch -->
 <div class="centered">
-  <div *ngIf="isVisible" class="lamp" [ngClass]="{'online': status === 'online', 'offline': status === 'offline'}">
-  </div>
-
+  <div
+    *ngIf="isVisible"
+    class="lamp"
+    [ngClass]="{ online: status === 'online', offline: status === 'offline' }"
+  ></div>
 
   <div [ngSwitch]="status">
     <div *ngSwitchCase="'online'">User is online</div>
@@ -22,43 +22,44 @@
     <div *ngSwitchDefault>User status unknown</div>
   </div>
   <button (click)="toggleVisibility()">
-    {{status === 'online' ? 'Ausloggen' : 'Einloggen'}}
+    {{ status === "online" ? "Ausloggen" : "Einloggen" }}
   </button>
 </div>
 <!-- ngFor -->
 <div class="centered">
-<h5>
-  Einkaufsliste:
-</h5>
-<ul>
-  <li *ngFor="let item of items">{{ item }}</li>
-</ul>
+  <h5>Einkaufsliste:</h5>
+  <ul>
+    <li *ngFor="let item of items">{{ item }}</li>
+  </ul>
 </div>
 <!-- Dynamisches Anwenden von Klassen für Textstile -->
 <div class="centered">
-<div [ngClass]="{
-  'bold': isBold,
-  'italic': isItalic,
-  'underline': isUnderlined
-}">
-  HFTM - Webprogrammieren
-</div>
-<!-- Schaltflächen zum Umschalten der Stile -->
-<div class="button-row">
-<button (click)="toggleBold()">Toggle Bold</button>
-<button (click)="toggleItalic()">Toggle Italic</button>
-<button (click)="toggleUnderline()">Toggle Underline</button>
-</div>
-<!-- ngStyle -->
-<div class="centered">
-  <div class="lamp" [ngStyle]="{'background-color': color}"></div> <!-- Zweites Lämpchen -->
-  
-<div [ngStyle]="{'background-color': color}">
-</div>
-<button (click)="changeColor()">Farbe Ändern!</button>
-</div>
-<!-- NgModel (2-Wege-Datenbindung) -->
-<input [(ngModel)]="name" placeholder="Enter your name">
-<p>Hello, {{ name }}!</p>
+  <div
+    [ngClass]="{
+      bold: isBold,
+      italic: isItalic,
+      underline: isUnderlined,
+    }"
+  >
+    HFTM - Webprogrammieren
+  </div>
+  <!-- Schaltflächen zum Umschalten der Stile -->
+  <div class="button-row">
+    <button (click)="toggleBold()">Toggle Bold</button>
+    <button (click)="toggleItalic()">Toggle Italic</button>
+    <button (click)="toggleUnderline()">Toggle Underline</button>
+  </div>
+  <!-- ngStyle -->
+  <div class="centered">
+    <div class="lamp" [ngStyle]="{ 'background-color': color }"></div>
+    <!-- Zweites Lämpchen -->
 
-<router-outlet></router-outlet>
+    <div [ngStyle]="{ 'background-color': color }"></div>
+    <button (click)="changeColor()">Farbe Ändern!</button>
+  </div>
+  <!-- NgModel (2-Wege-Datenbindung) -->
+  <input [(ngModel)]="name" placeholder="Enter your name" />
+  <p>Hello, {{ name }}!</p>
+
+  <router-outlet></router-outlet>
+</div>

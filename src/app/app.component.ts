@@ -15,10 +15,10 @@ import { MatCardModule } from '@angular/material/card'; // Angular Material
     CommonModule, // Hinzufügen des CommonModule für die benötigten Direktiven
     MatButtonModule,
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'angular-blog-app-richard-bickard';
@@ -54,7 +54,10 @@ export class AppComponent {
   }
 
   handleClick() {
-    window.open('https://github.com/hftm-in2022/angular-blog-app-richard-bickard', '_blank');
+    window.open(
+      'https://github.com/hftm-in2022/angular-blog-app-richard-bickard',
+      '_blank',
+    );
   }
 
   toggleBold() {
@@ -68,5 +71,4 @@ export class AppComponent {
   toggleUnderline() {
     this.isUnderlined = !this.isUnderlined;
   }
-
 }

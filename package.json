@@ -2,7 +2,8 @@
   "name": "angular-blog-app-richard-bickard",
   "version": "0.0.0",
   "scripts": {
-    "format": "npx prettier --write ./src/app/*",
+    "format:check": "prettier --check \"src/**/*.{ts,html,scss}\"",
+    "format:write": "prettier --write \"src/**/*.{ts,html,scss}\"",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
