@@ -23,7 +23,6 @@ import { MatCardModule } from '@angular/material/card'; // Angular Material
 export class AppComponent {
   title = 'angular-blog-app-richard-bickard';
 
- 
   handleClick() {
     window.open(
       'https://github.com/hftm-in2022/angular-blog-app-richard-bickard',
