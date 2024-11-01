@@ -10,41 +10,50 @@ on:
       - main
 
 jobs:
-  build_test_and_deploy_:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+  CodeQL:
+    uses: hftm-in2022/angular-blog-app-richard-bickard/.github/workflows/codeql.yml@main
+
+  build:
+    needs: codeQL
     runs-on: ubuntu-latest
-    name: Build, Test and Deploy Job
+    name: Build Job
+    strategy:
+      matrix:
+        node-version: [22.x]
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
-          submodules: true
-          lfs: false
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+      - name: npm install, build, and test
+        run: |
+          npm ci
+          npm run build --if-present
+          npm run test:ci --if-present
+
+      - name: Upload HTML Test Report
+        uses: actions/upload-artifact@v3
         with:
-          node-version: '20'
-          cache: 'npm'  
-      
-      - name: Install Dependencies
-        run: npm ci
+          name: test-report
+          path: reports/test-summary
 
-      - name: Lint Check
-        run: |
-          npm run lint
-          npm run format:check
-          npm run format:write
-
-      - name: Run Tests
-        run: npm run test:ci
-      
-      - name: Check for Updates
-        run: |
-          npx npm-check-updates || true
-          npm outdated || true
-
-      - name: Build And Deploy
-        id: builddeploy
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: reports/coverage
+  deploy:
+    needs: build
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    name: Deploy Job
+    steps:
+      - name: Deploy
+        id: deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_SKY_03BFA9B03 }}
@@ -56,15 +65,3 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "dist/angular-blog-app-richard-bickard/browser" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
-      
-  close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    name: Close Pull Request Job
-    steps:
-      - name: Close Pull Request
-        id: closepullrequest
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_SKY_03BFA9B03 }}
-          action: "close"

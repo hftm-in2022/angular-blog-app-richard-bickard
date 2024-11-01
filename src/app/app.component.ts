@@ -1,33 +1,64 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // Für NgModel (2-Wege-Datenbindung)
-import { CommonModule } from '@angular/common'; // Für ngIf, ngFor, ngSwitch, ngClass, ngStyle
-import { MatButtonModule } from '@angular/material/button'; // Angular Material
-import { MatToolbarModule } from '@angular/material/toolbar'; // Angular Material
-import { MatCardModule } from '@angular/material/card'; // Angular Material
+import { z } from 'zod';
+import { environment } from '../environments/environment';
+import { map, Observable } from 'rxjs';
+import { AsyncPipe, NgIf } from '@angular/common';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+
+const BlogSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  contentPreview: z.string(),
+  author: z.string(),
+  likes: z.number(),
+  comments: z.number(),
+  likedByMe: z.boolean(),
+  createdByMe: z.boolean(),
+  headerImageUrl: z.string().optional(),
+});
+
+const BlogArraySchema = z.array(BlogSchema);
+
+const EntriesSchema = z.object({
+  data: BlogArraySchema,
+  pageIndex: z.number(),
+  pageSize: z.number(),
+  totalCount: z.number(),
+  maxPageSize: z.number(),
+});
+
+export type Blog = z.infer<typeof BlogSchema>;
+
+export type Entries = z.infer<typeof EntriesSchema>;
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    FormsModule,
-    CommonModule, // Hinzufügen des CommonModule für die benötigten Direktiven
-    MatButtonModule,
-    MatToolbarModule,
+    NgIf,
+    AsyncPipe,
     MatCardModule,
+    MatButtonModule,
+    MatIcon,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'angular-blog-app-richard-bickard';
+  title = 'blog-app';
 
- 
-  handleClick() {
-    window.open(
-      'https://github.com/hftm-in2022/angular-blog-app-richard-bickard',
-      '_blank',
-    );
+  httpClient = inject(HttpClient);
+  blogs$: Observable<Entries>;
+
+  constructor() {
+    this.blogs$ = this.httpClient
+      .get<Entries>(`${environment.serviceUrl}/entries`)
+      .pipe(map((entries) => EntriesSchema.parse(entries)));
   }
 }
