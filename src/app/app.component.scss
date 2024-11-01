@@ -1,140 +1,59 @@
-/* Global Styles for the app */
 :host {
-  --bright-blue: oklch(51.01% 0.274 263.83);
-  --electric-violet: oklch(53.18% 0.28 296.97);
-  --french-violet: oklch(47.66% 0.246 305.88);
-  --vivid-pink: oklch(69.02% 0.277 332.77);
-  --hot-red: oklch(61.42% 0.238 15.34);
-  --orange-red: oklch(63.32% 0.24 31.68);
+  .blog-container {
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
 
-  font-family: "Inter", sans-serif;
-  box-sizing: border-box;
-}
+  @media screen and (min-width: 450px) {
+    .blog-container {
+      width: 400px;
+    }
+  }
 
-/* Styling for the Angular Material Toolbar */
-mat-toolbar {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 20px;
-  /* Add some space below the toolbar */
-}
+  @media screen and (min-width: 841px) {
+    .blog-container {
+      width: 840px;
+    }
+  }
 
-/* Card styling */
-mat-card {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 30px;
-  /* Space between card and other elements */
-  padding: 20px;
-}
+  @media screen and (min-width: 1261px) {
+    .blog-container {
+      width: 1260px;
+    }
+  }
 
-/* Button styling */
-button {
-  margin-top: 10px;
-  /* Space between button and content above */
-}
+  @media screen and (min-width: 1681px) {
+    .blog-container {
+      width: 1680px;
+    }
+  }
 
-/* List styling */
-ul {
-  padding-left: 20px;
-  margin-top: 20px;
-  /* Space before the list */
-}
+  .blog-card {
+    margin: 0.625rem;
+    width: 400px;
 
-/* Class for toggled content */
-.active {
-  background-color: green;
-  padding: 10px;
-}
+    .card-title {
+      min-height: 4rem;
+    }
 
-.inactive {
-  background-color: red;
-  padding: 10px;
-}
+    .blog-image {
+      border-radius: 0.8rem;
+      margin: 0.8rem;
+    }
 
-/* Styling for dynamically styled div */
-div[ngStyle] {
-  margin-top: 20px;
-  padding: 10px;
-  color: white;
-}
+    .blog-footer {
+      display: flex;
 
-/* Input field for two-way binding */
-input {
-  display: block;
-  margin-top: 20px;
-  /* Space between input and other content */
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+      .blog-author {
+        flex-grow: 1;
 
-p {
-  margin-top: 10px;
-  /* Space between paragraphs and other elements */
-  font-size: 16px;
-}
-
-/* Overall padding for the main content */
-main {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  display: block;
-}
-
-/* Lämpchen Styling */
-.lamp {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%; /* Macht das Element rund */
-  margin-top: 10px; /* Abstand zum oberen Element */
-  transition: background-color 0.3s ease; /* Sanfter Übergang der Farben */
-}
-
-.lamp.online {
-  background-color: green; /* Grün, wenn online */
-}
-
-.lamp.offline {
-  background-color: red; /* Rot, wenn offline */
-}
-.centered {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-top: 20px;
-}
-
-/* Klasse für fetten Text */
-.bold {
-  font-weight: bold;
-}
-
-/* Klasse für kursiven Text */
-.italic {
-  font-style: italic;
-}
-
-/* Klasse für unterstrichenen Text */
-.underline {
-  text-decoration: underline;
-}
-
-/* Flexbox-Layout, um die Buttons in einer Zeile anzuzeigen */
-.button-row {
-  display: flex;
-  gap: 10px; /* Abstand zwischen den Buttons */
-  margin-top: 10px; /* Abstand zum Inhalt darüber */
-}
-
-button {
-  padding: 8px 16px; /* Optional: Button-Größe anpassen */
-  font-size: 14px; /* Optional: Schriftgröße der Buttons */
+        p {
+          margin-top: 0;
+        }
+      }
+    }
+  }
 }

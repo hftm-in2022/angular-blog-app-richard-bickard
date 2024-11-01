@@ -1,7 +1,53 @@
-<mat-toolbar color="primary">
-    Blog App
-</mat-toolbar>
+<<<<<<< HEAD
+<mat-toolbar color="primary"> Blog App </mat-toolbar>
 
 <div class="container">
-    <app-blog-list></app-blog-list>
+  <app-blog-list></app-blog-list>
 </div>
+=======
+@let blogs = blogs$ | async;
+<div class="blog-container">
+  @for (blog of blogs?.data; track blog.id) {
+    <mat-card class="blog-card">
+      <mat-card-header>
+        <mat-card-title class="card-title" data-testid="title">{{
+          blog.title
+        }}</mat-card-title>
+      </mat-card-header>
+      @defer (on viewport) {
+        <img
+          height="300"
+          class="blog-image"
+          mat-card-image
+          src="{{ 'https://picsum.photos/seed/' + blog.id + '/348/300' }}"
+          alt="Random Photo"
+        />
+      } @placeholder {
+        <img alt="image of the blog" height="300" class="blog-image" />
+      }
+      <mat-card-content>
+        <p>{{ blog.contentPreview }}</p>
+      </mat-card-content>
+      <mat-card-footer class="blog-footer">
+        <mat-card-content class="blog-author">
+          <p>{{ blog.author }}</p>
+        </mat-card-content>
+        <mat-card-actions MatCardActions.align="end">
+          <button
+            mat-icon-button
+            aria-label="Example icon button with a heart icon"
+          >
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            aria-label="Example icon button with a shareicon"
+          >
+            <mat-icon>share</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </mat-card>
+  }
+</div>
+>>>>>>> 747356c (fix: resolve restart project issue)
