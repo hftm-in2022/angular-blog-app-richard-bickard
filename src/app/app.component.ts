@@ -38,7 +38,6 @@ export type Entries = z.infer<typeof EntriesSchema>;
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [
     RouterOutlet,
     NgIf,
