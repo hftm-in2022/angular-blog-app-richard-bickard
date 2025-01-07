@@ -1,0 +1,66 @@
+<mat-card class="blog-detail-card">
+  <!-- Blog Header -->
+  <img
+    *ngIf="blog().headerImageUrl"
+    mat-card-image
+    [src]="blog().headerImageUrl"
+    [alt]="blog().title"
+    class="blog-header-image"
+  />
+  <mat-card-header>
+    <mat-card-title>{{ blog().title }}</mat-card-title>
+    <mat-card-subtitle>
+      By {{ blog().author }} • {{ blog().createdAt | date: "longDate" }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <!-- Blog Content -->
+  <mat-card-content>
+    <p>{{ blog().content }}</p>
+  </mat-card-content>
+  <!-- Blog Actions -->
+  <mat-card-actions>
+    <div class="blog-actions">
+      <button
+        mat-icon-button
+        [color]="blog().likedByMe ? 'accent' : undefined"
+        aria-label="Like this blog"
+        (click)="toggleLike()"
+      >
+        <mat-icon>{{
+          blog().likedByMe ? "thumb_up" : "thumb_up_off_alt"
+        }}</mat-icon>
+      </button>
+      <span>{{ blog().likes }} Likes</span>
+      <button mat-icon-button aria-label="View comments">
+        <mat-icon>comment</mat-icon>
+      </button>
+      <span>{{ blog().comments?.length || 0 }} Comments</span>
+    </div>
+    <button mat-raised-button color="primary" routerLink="/">
+      <mat-icon>arrow_back</mat-icon>
+      Back to Blogs
+    </button>
+  </mat-card-actions>
+  <!-- Comments Section -->
+  <mat-divider></mat-divider>
+  <div class="comments-section">
+    <h3>Comments</h3>
+    @if (blog().comments?.length) {
+      @for (comment of blog().comments; track comment.id) {
+        <mat-card class="comment-card">
+          <mat-card-header>
+            <mat-card-title>{{ comment.author }}</mat-card-title>
+            <mat-card-subtitle>{{
+              comment.createdAt | date: "longDate"
+            }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ comment.content }}</p>
+          </mat-card-content>
+        </mat-card>
+      }
+    } @else {
+      <p>No comments yet. Be the first to comment!</p>
+    }
+  </div>
+</mat-card>

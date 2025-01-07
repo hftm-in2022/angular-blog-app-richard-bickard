@@ -1,0 +1,24 @@
+.blog-entry {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  /* White background for cards */
+  border: 1px solid #e0e0e0;
+  /* Subtle border */
+  border-radius: 8px;
+  /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Light shadow for depth */
+  overflow: hidden;
+  /* Ensure content doesn't overflow */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  /* Smooth hover effect */
+}
+.blog-entry:hover {
+  transform: translateY(-4px);
+  /* Slight lift on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  /* Stronger shadow on hover */
+}
