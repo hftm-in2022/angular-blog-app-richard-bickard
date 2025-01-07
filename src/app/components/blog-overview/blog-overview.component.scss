@@ -1,0 +1,25 @@
+.blog-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+  
+    .blog-entry {
+      flex: 1 1 calc(33% - 16px);
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    @media (max-width: 768px) {
+      .blog-entry {
+        flex: 1 1 calc(50% - 16px);
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .blog-entry {
+        flex: 1 1 100%;
+      }
+    }
+  }

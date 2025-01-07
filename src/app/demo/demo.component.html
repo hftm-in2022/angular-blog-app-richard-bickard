@@ -1,0 +1,44 @@
+<mat-card>
+    <mat-card-title>Demo App</mat-card-title>
+  
+    <!-- Mat Input with 2-Way Binding -->
+    <mat-form-field>
+      <input matInput placeholder="Your Name" [(ngModel)]="userName" />
+    </mat-form-field>
+  
+    <p>Hello, {{ userName }}!</p>
+  
+    <!-- NgStyle and NgClass with Buttons -->
+    <button mat-raised-button color="primary" (click)="toggleButton()" [ngClass]="{ 'active-button': isActive }"
+      [ngStyle]="{ backgroundColor: isActive ? 'green' : 'gray' }">
+      {{ isActive ? 'Active' : 'Inactive' }}
+    </button>
+  
+    <!-- Conditional Rendering with *ngIf and *ngSwitch -->
+    <div *ngIf="userName">
+      <p *ngIf="userName.length < 5">Name is too short!</p>
+      <p *ngIf="userName.length >= 5">Name looks good!</p>
+    </div>
+  
+    <div [ngSwitch]="userStatus">
+      <p *ngSwitchCase="'online'">User is online</p>
+      <p *ngSwitchCase="'offline'">User is offline</p>
+      <p *ngSwitchDefault>Unknown status</p>
+    </div>
+  
+    <!-- Loop with *ngFor -->
+    <ul>
+      <li *ngFor="let item of items; let i = index">
+        {{ i + 1 }}. {{ item }}
+      </li>
+    </ul>
+  
+    <!-- Mat Select for status change -->
+    <mat-form-field>
+      <mat-select placeholder="Select Status" [(ngModel)]="userStatus">
+        <mat-option value="online">Online</mat-option>
+        <mat-option value="offline">Offline</mat-option>
+        <mat-option value="busy">Busy</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>

@@ -1,29 +1,16 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-export const loggingInterceptor: HttpInterceptorFn = (req, next) => {
-  console.log('Http request:', {
-    method: req.method,
-    url: req.url,
-    headers: req.headers,
-    body: req.body,
-  });
-
-  return next(req).pipe(
-    tap({
-      next: (event) => {
-        console.log('HTTP response:', {
-          url: req.url,
-          event,
-        });
-      },
-      error: (error) => {
-        console.error('HTTP Request error:', {
-          url: req.url,
-          status: error.status,
-          message: error.message,
-        });
-      },
-    }),
-  );
-};
+@Injectable()
+export class LoggingInterceptor implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log('Outgoing request to: ', req.url);
+    return next.handle(req).pipe(
+      tap(event => {
+        console.log('Response received from: ', req.url);
+      })
+    );
+  }
+}
