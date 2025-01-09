@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { BlogService } from "./core/services/blog.service";
+import { SidebarComponent } from "./components/sidebar/sidebar.component";
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet, MatProgressSpinnerModule],
+  imports: [MatProgressSpinnerModule, SidebarComponent],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })

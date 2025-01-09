@@ -9,6 +9,7 @@ import {
 } from "@angular/common/http";
 import { LoggingInterceptor } from "./core/interceptors/logging.interceptor";
 import { GlobalErrorHandler } from "./core/errorHandlers/globalErrorHandler";
+import { authProviders } from "./auth/auth.config";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,5 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
     provideHttpClient(withInterceptorsFromDi()),
+    ...authProviders,
   ],
 };

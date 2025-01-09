@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { AsyncPipe, CommonModule } from "@angular/common";
 import { RouterLink } from "@angular/router";
-import { BlogCardComponent } from "../../components/blog-card.component";
+import { BlogCardComponent } from "../../components/blog-card/blog-card.component";
 import { EntryOverview, PagedData } from "../../types";
 @Component({
   selector: "app-blog-overview-page",

@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { pagedBlogEntriesResolver } from "./core/resolvers/pagedBlogEntriesResolver";
+import { isAuthenticatedGuard } from "./auth/authenticated.guard";
 
 export const routes: Routes = [
   {
@@ -12,6 +13,12 @@ export const routes: Routes = [
     path: "blogs",
     loadChildren: () =>
       import("./features/blog-detail-page/blog-detail-page.routes"),
+  },
+  {
+    path: "add",
+    loadChildren: () =>
+      import("./features/blog-detail-page/blog-detail-page.routes"),
+    canActivate: [isAuthenticatedGuard],
   },
   {
     path: "error",
