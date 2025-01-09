@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { z } from "zod";
 import { BlogService } from "../../core/services/blog.service";
 @Component({
-  selector: "app-add-blog-page",
+  selector: "app-blog-add-page",
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -18,11 +18,11 @@ import { BlogService } from "../../core/services/blog.service";
     MatButtonModule,
     MatSnackBarModule,
   ],
-  templateUrl: "./add-blog-page.component.html",
-  styleUrl: "./add-blog-page.component.scss",
+  templateUrl: "./blog-add-page.component.html",
+  styleUrl: "./blog-add-page.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddBlogPageComponent {
+export class BlogAddPageComponent {
   newEntryForm: FormGroup;
   private blogService = inject(BlogService);
   private router = inject(Router);

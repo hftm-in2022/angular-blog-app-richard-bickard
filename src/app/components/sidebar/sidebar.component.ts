@@ -8,7 +8,8 @@ import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
 import { Observable } from "rxjs";
 import { map, shareReplay } from "rxjs/operators";
-import { OidcSecurityService } from "angular-auth-oidc-client";
+import { RouterLink, RouterOutlet } from "@angular/router";
+import { LoginResponse, OidcSecurityService } from "angular-auth-oidc-client";
 import { hasRole } from "../../auth/auth-utils";
 
 @Component({
@@ -23,6 +24,8 @@ import { hasRole } from "../../auth/auth-utils";
     MatListModule,
     MatIconModule,
     AsyncPipe,
+    RouterOutlet,
+    RouterLink,
   ],
 })
 export class SidebarComponent implements OnInit {
@@ -32,18 +35,21 @@ export class SidebarComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
 
   ngOnInit() {
-    this.oidcSecurityService.checkAuth().subscribe((loginResponse) => {
-      const { isAuthenticated, userData, accessToken } = loginResponse;
+    this.oidcSecurityService
+      .checkAuth()
+      .subscribe((loginResponse: LoginResponse) => {
+        const { isAuthenticated, userData, accessToken } = loginResponse;
 
-      if (isAuthenticated) {
-        const username = userData?.preferred_username;
-        this.username.set(username ?? "unknown");
-        this.isUserRole.set(hasRole(accessToken, "user"));
-      } else {
-        this.username.set(undefined);
-        this.isUserRole.set(false);
-      }
-    });
+        if (isAuthenticated) {
+          const username = userData?.preferred_username;
+
+          this.username.set(username ?? "unknown");
+          this.isUserRole.set(hasRole(accessToken, "user"));
+        } else {
+          this.username.set(undefined);
+          this.isUserRole.set(false);
+        }
+      });
   }
 
   isHandset$: Observable<boolean> = this.breakpointObserver
