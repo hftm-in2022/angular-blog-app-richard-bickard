@@ -1,14 +1,27 @@
 .sidenav-container {
-  display: flex;
   height: 100%;
 }
 
 .sidenav {
-  width: 240px;
+  width: 200px;
 }
 
-.mat-toolbar {
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.right {
+  float: right;
+}
+.username {
+  width: 100%;
+  p {
+    padding-left: 16px;
+  }
 }

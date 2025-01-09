@@ -1,6 +1,8 @@
 import { z } from "zod";
+
 // Define LocalDateTime schema
 const LocalDateTime = z.string();
+
 // Comment schema
 const CommentSchema = z.object({
   id: z.number().int(),
@@ -10,6 +12,7 @@ const CommentSchema = z.object({
   createdAt: LocalDateTime.optional(),
 });
 export type Comment = z.infer<typeof CommentSchema>;
+
 // Entry schema
 export const EntrySchema = z.object({
   id: z.number().int().optional(),
@@ -25,6 +28,7 @@ export const EntrySchema = z.object({
   headerImageUrl: z.string().optional(),
 });
 export type Entry = z.infer<typeof EntrySchema>;
+
 // EntryOverview schema
 export const EntryOverviewSchema = z.object({
   id: z.number().int().optional(),
@@ -40,23 +44,27 @@ export const EntryOverviewSchema = z.object({
   headerImageUrl: z.string().optional(),
 });
 export type EntryOverview = z.infer<typeof EntryOverviewSchema>;
+
 // LikeInfo schema
 export const LikeInfoSchema = z.object({
   likedByMe: z.boolean().optional(),
 });
 export type LikeInfo = z.infer<typeof LikeInfoSchema>;
+
 // NewComment schema
 export const NewCommentSchema = z.object({
   content: z.string().optional(),
 });
 export type NewComment = z.infer<typeof NewCommentSchema>;
+
 // NewEntry schema
 export const NewEntrySchema = z.object({
-  title: z.string().optional(),
-  content: z.string().optional(),
+  title: z.string().min(3),
+  content: z.string().min(3),
   headerImageUrl: z.string().optional(),
 });
 export type NewEntry = z.infer<typeof NewEntrySchema>;
+
 // PagedData schema
 export const PagedDataSchema = <T>(dataSchema: z.ZodType<T>) =>
   z.object({
@@ -66,4 +74,5 @@ export const PagedDataSchema = <T>(dataSchema: z.ZodType<T>) =>
     totalCount: z.number().int().optional(),
     maxPageSize: z.number().int().optional(),
   });
+
 export type PagedData<T> = z.infer<ReturnType<typeof PagedDataSchema<T>>>;

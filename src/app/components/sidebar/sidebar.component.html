@@ -9,14 +9,15 @@
     [autoFocus]="false"
   >
     <mat-toolbar>
-      <h1 [routerLink]="['/']">
-        Blog App {{ username() ? "- " + username() : "" }}
-      </h1>
+      <h1 [routerLink]="['/']">Blog App</h1>
     </mat-toolbar>
     <mat-nav-list>
       @if ((oidcSecurityService.isAuthenticated() | async) === false) {
-        <button mat-list-item (click)="login()">Login</button>
+        <a mat-list-item href="#" (click)="login()">Login</a>
       } @else {
+        <div class="username">
+          <p>{{ username() }}</p>
+        </div>
         @if (isUserRole()) {
           <button mat-list-item [routerLink]="['/add']">Add Blog</button>
         }

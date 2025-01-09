@@ -16,8 +16,7 @@ export const routes: Routes = [
   },
   {
     path: "add",
-    loadChildren: () =>
-      import("./features/blog-detail-page/blog-detail-page.routes"),
+    loadChildren: () => import("./features/blog-add-page/blog-add-page.routes"),
     canActivate: [isAuthenticatedGuard],
   },
   {

@@ -1,9 +1,8 @@
-<app-sidebar>
-  @if (blogService.isLoading()) {
-    <div class="overlay-container">
-      <div class="overlay">
-        <mat-spinner></mat-spinner>
-      </div>
+@if (blogService.isLoading()) {
+  <div class="overlay-container">
+    <div class="overlay">
+      <mat-spinner></mat-spinner>
     </div>
-  }
-</app-sidebar>
+  </div>
+}
+<app-sidebar></app-sidebar>
