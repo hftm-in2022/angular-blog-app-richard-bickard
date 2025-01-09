@@ -1,25 +1,48 @@
 .blog-entry {
   display: flex;
   flex-direction: column;
-  background: #ffffff;
-  /* White background for cards */
-  border: 1px solid #e0e0e0;
-  /* Subtle border */
-  border-radius: 8px;
-  /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Light shadow for depth */
-  overflow: hidden;
-  /* Ensure content doesn't overflow */
+  background: #ffffff; /* Weißer Hintergrund für Karten */
+  border: 1px solid #e0e0e0; /* Dezente Umrandung */
+  border-radius: 8px; /* Abgerundete Ecken */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leichter Schatten für Tiefe */
+  overflow: hidden; /* Sicherstellen, dass der Inhalt nicht überläuft */
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease;
-  /* Smooth hover effect */
+    box-shadow 0.3s ease; /* Weicher Hover-Effekt */
 }
 
 .blog-entry:hover {
-  transform: translateY(-4px);
-  /* Slight lift on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  /* Stronger shadow on hover */
+  transform: translateY(-4px); /* Leichtes Anheben beim Hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Stärkerer Schatten beim Hover */
+}
+
+.blog-entry img {
+  max-height: 200px; /* Maximale Höhe des Bildes */
+  object-fit: cover; /* Bild skalieren und zuschneiden */
+}
+
+.blog-entry mat-card-header {
+  margin-bottom: 16px;
+  mat-card-title {
+    font-size: 1.5rem; /* Schriftgröße des Titels */
+    font-weight: bold;
+    color: #333;
+  }
+  mat-card-subtitle {
+    font-size: 1rem; /* Schriftgröße des Untertitels */
+    color: #666;
+  }
+}
+
+.blog-entry mat-card-content {
+  margin: 16px 0;
+  font-size: 1rem; /* Schriftgröße des Inhalts */
+  line-height: 1.5;
+  color: #444;
+}
+
+.blog-entry mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
