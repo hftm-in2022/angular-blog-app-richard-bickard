@@ -7,5 +7,5 @@ export const blogEntryResolver: ResolveFn<Entry> = async (route) => {
   const blogService = inject(BlogService);
   const id = route.paramMap.get("id");
   if (!id) throw new Error("No id provided");
-  return await lastValueFrom(blogService.getBlog(id));
+  return await lastValueFrom(blogService.getBlog(id)); // ResolveFn kann auch ein Observable zurückgeben, warum noch in ein Promise verwandeln?
 };

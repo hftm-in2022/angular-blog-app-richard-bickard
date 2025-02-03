@@ -41,6 +41,7 @@ export class BlogAddPageComponent {
     try {
       const validatedData: NewEntry = NewEntrySchema.parse(formValue);
       this.blogService.addBlog(validatedData).subscribe({
+        // subscribe ohne takeUntil oder unsubscribe, memory leak
         next: () => this.router.navigate(["/"]),
         error: (error) => this.snackBar.open(`An error occured: ${error}`),
       });
@@ -48,7 +49,7 @@ export class BlogAddPageComponent {
       if (error instanceof z.ZodError) {
         error.errors.map((error) =>
           this.snackBar.open(
-            `Validation Error: ${error.path} - ${error.message}`,
+            `Validation Error: ${error.path} - ${error.message}`, // willst du wirklich die Validation Message dem Benutzer zurückgeben?
             "Close",
             { duration: 3000 },
           ),

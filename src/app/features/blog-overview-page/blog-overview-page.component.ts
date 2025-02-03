@@ -9,7 +9,7 @@ import { EntryOverview, PagedData } from "../../types";
   styleUrls: ["./blog-overview-page.component.scss"],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, BlogCardComponent, RouterLink, AsyncPipe],
+  imports: [CommonModule, BlogCardComponent, RouterLink, AsyncPipe], // unbenutzte imports RouterLink und AsyncPipe
 })
 export class BlogOverviewPageComponent {
   model = input.required<PagedData<EntryOverview>>();

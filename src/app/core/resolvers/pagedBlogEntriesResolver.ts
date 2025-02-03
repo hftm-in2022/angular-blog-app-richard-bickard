@@ -7,5 +7,5 @@ export const pagedBlogEntriesResolver: ResolveFn<
   PagedData<EntryOverview>
 > = async () => {
   const blogService = inject(BlogService);
-  return await lastValueFrom(blogService.getBlogs());
+  return await lastValueFrom(blogService.getBlogs()); // ResolveFn kann auch ein Observable zurückgeben, warum noch in ein Promise verwandeln?
 };

@@ -38,6 +38,7 @@ export class SidebarComponent implements OnInit {
     this.oidcSecurityService
       .checkAuth()
       .subscribe((loginResponse: LoginResponse) => {
+        // warum subscribe und dann die Signals setzen? besser wäre es Observable zu erstellen und toSignal
         const { isAuthenticated, userData, accessToken } = loginResponse;
 
         if (isAuthenticated) {

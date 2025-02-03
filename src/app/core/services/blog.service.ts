@@ -16,6 +16,7 @@ import {
   providedIn: "root",
 })
 export class BlogService {
+  // trennen von Backend Service und State Management, abstraktionsebene
   private _isLoading = signal(false);
   httpClient = inject(HttpClient);
 

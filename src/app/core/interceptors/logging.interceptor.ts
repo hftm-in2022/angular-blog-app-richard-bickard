@@ -14,7 +14,7 @@ export class LoggingInterceptor implements HttpInterceptor {
     req: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    console.log("Outgoing request to: ", req.url);
+    console.log("Outgoing request to: ", req.url); // keine logs im produktivem code
     return next.handle(req).pipe(
       tap((event) => {
         console.log(event);

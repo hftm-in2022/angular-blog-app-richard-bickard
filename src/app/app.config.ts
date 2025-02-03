@@ -13,7 +13,7 @@ import { authProviders } from "./auth/auth.config";
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    GlobalErrorHandler,
+    GlobalErrorHandler, // { provide: ErrorHandler, useClass: GlobalErrorHandler, },  // global error handler wird nie aufgerufen
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
     provideAnimationsAsync(),
