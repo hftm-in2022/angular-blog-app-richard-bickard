@@ -1,0 +1,38 @@
+<!-- src/app/components/performance-dashboard/performance-dashboard.component.html -->
+<div class="dashboard-container">
+  <mat-toolbar color="primary">
+    <span>Performance-Dashboard</span>
+    <span class="toolbar-spacer"></span>
+    <button mat-button (click)="refreshData()">
+      <mat-icon>refresh</mat-icon> Aktualisieren
+    </button>
+  </mat-toolbar>
+
+  <mat-tabs>
+    <mat-tab label="Antwortzeiten">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>API-Antwortzeiten (ms)</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Inhalte kommen später...</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+    
+    <mat-tab label="Web Vitals">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Core Web Vitals</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Inhalte kommen später...</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+    
+    <mat-tab label="Ressourcen">
+      <p>Ressourcen-Tab-Inhalt</p>
+    </mat-tab>
+  </mat-tabs>
+</div>

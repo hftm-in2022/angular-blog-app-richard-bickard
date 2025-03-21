@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { pagedBlogEntriesResolver } from "./core/resolvers/pagedBlogEntriesResolver";
 import { isAuthenticatedGuard } from "./auth/authenticated.guard";
+import { PerformanceDashboardComponent } from './components/performance-dashboard/performance-dashboard.component';
 
 export const routes: Routes = [
   {
@@ -8,6 +9,11 @@ export const routes: Routes = [
     loadChildren: () =>
       import("./features/blog-overview-page/blog-overview-page.routes"),
     resolve: { model: pagedBlogEntriesResolver },
+  },
+  {
+    path: "performance",
+    component: PerformanceDashboardComponent,
+    canActivate: [isAuthenticatedGuard],
   },
   {
     path: "blogs",

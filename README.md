@@ -1,189 +1,195 @@
+# Angular Blog App - Last-Tests mit JMeter und Azure Load Testing
 
-**Setup eines Angular-Projekts mit ESLint, Prettier, Environments, Commitlint, lint-staged und Husky**
+Dieses Projekt ist eine Erweiterung der Angular Blog-Anwendung mit Fokus auf Performance-Testing und Last-Tests. Es nutzt Apache JMeter und Azure Load Testing, um die Leistung der Anwendung unter verschiedenen Belastungsszenarien zu testen und zu analysieren.
 
-Diese Anleitung beschreibt, wie du ein Angular-Projekt einrichtest und verschiedene Tools wie ESLint, Prettier, Environments, Commitlint, lint-staged und Husky hinzufügst, um eine hohe Codequalität und einen effizienten Entwicklungsprozess zu gewährleisten.
+## Projektstruktur
 
-**Inhaltsübersicht**
+Die Hauptkomponenten des Projekts sind:
 
-1.  Einrichten eines Angular-Projekts
-2.  ESLint in Angular integrieren
-3.  Prettier hinzufügen und konfigurieren
-4.  Umgebungen (Environments) in Angular verwalten
-5.  Commitlint für standardisierte Commit-Nachrichten
-6.  lint-staged für Teil-Commits nutzen
-7.  Husky zur Verwaltung von Git-Hooks einrichten
+- **Angular Blog App**: Eine reaktive Angular-Anwendung für die Verwaltung von Blog-Einträgen
+- **JMeter-Testpläne**: Definierte Szenarien zum Testen der Anwendung unter Last
+- **Azure Load Testing**: Konfiguration für Cloud-basierte Last-Tests
+- **Performance-Monitoring**: Komponenten zur Überwachung und Analyse der Anwendungsleistung
+- **Docker-Konfiguration**: Container für reproduzierbare Last-Tests
 
-**1. Einrichten eines Angular-Projekts**
+## Inhaltsverzeichnis
 
-Um ein neues Angular-Projekt zu starten, nutze folgenden Befehl:
+1. [Einrichtung und Installation](#einrichtung-und-installation)
+2. [Last-Test-Funktionen](#last-test-funktionen)
+3. [JMeter-Testplan](#jmeter-testplan)
+4. [Azure Load Testing](#azure-load-testing)
+5. [Performance-Monitoring](#performance-monitoring)
+6. [Docker-Unterstützung](#docker-unterstützung)
+7. [CI/CD-Integration](#ci/cd-integration)
+8. [Beispiel-Ergebnisse](#beispiel-ergebnisse)
 
-`ng new mein-angular-projekt`
-
-Folge den Eingabeaufforderungen und passe das Projekt nach deinen Anforderungen an. Gehe danach in das neu erstellte Verzeichnis:
-
-`cd mein-angular-projekt`
-
-Jetzt kannst du mit der Installation und Konfiguration der Tools fortfahren.
-
-**2. ESLint in Angular integrieren**
-
-ESLint ist ein wichtiges Werkzeug, um statische Codeanalysen durchzuführen und Inkonsistenzen im Code zu vermeiden. Führe diesen Befehl aus, um ESLint zu installieren und in Angular zu integrieren:
-
-`ng add @angular-eslint/schematics`
-
-Weitere Informationen zur Verwendung von ESLint in Angular findest du in der offiziellen Angular-Linting-Dokumentation.
-
-**3. Prettier hinzufügen und konfigurieren**
-
-Prettier formatiert deinen Code automatisch und sorgt dafür, dass er immer den definierten Formatierungsregeln entspricht. Installiere Prettier als Entwicklungsabhängigkeit:
-
-`npm install prettier --save-dev`
-
-Ergänze folgendes Skript in deiner package.json, um den Code im src/app-Verzeichnis automatisch zu formatieren:
-
-`"scripts": { "format": "npx prettier --write ./src/app/*" }`
-
-**4. Umgebungen (Environments) in Angular verwalten**
-
-Environments erlauben es, verschiedene Einstellungen für unterschiedliche Umgebungen (z.B. Produktion und Entwicklung) zu definieren. Erstelle die Environment-Dateien mit folgendem Befehl:
-
-`ng generate environments`
-
-Detaillierte Informationen findest du in der offiziellen Angular-Build-Dokumentation.
-
-**5. Commitlint für standardisierte Commit-Nachrichten**
-
-Commitlint stellt sicher, dass alle Commit-Nachrichten einem festgelegten Format entsprechen. Installiere Commitlint und die Konfiguration für konventionelle Commit-Nachrichten:
-
-`npm install @commitlint/cli @commitlint/config-conventional --save-dev`
-
-Ergänze die Commitlint-Konfiguration in der package.json:
-
-`"commitlint": { "extends": [ "@commitlint/config-conventional" ] }`
-
-Weitere Informationen findest du auf der Commitlint-Website.
-
-**6. lint-staged für Teil-Commits nutzen**
-
-Mit lint-staged kannst du sicherstellen, dass nur die geänderten Dateien formatiert und überprüft werden, was den Commit-Prozess beschleunigt. Installiere lint-staged:
-
-`npm install --save-dev lint-staged`
-
-Füge folgende Konfiguration zur package.json hinzu, um Prettier und ESLint nur auf die geänderten Dateien anzuwenden:
-
-`"lint-staged": { "*.{ts,js,html}": "eslint --cache --fix", "*.{ts,js,html,css,scss,less,md}": "prettier --write" }`
-
-Mehr über die Möglichkeiten von lint-staged erfährst du auf der offiziellen lint-staged GitHub-Seite.
-
-**7. Husky zur Verwaltung von Git-Hooks einrichten**
-
-Mit Husky kannst du Git-Hooks erstellen, um sicherzustellen, dass vor jedem Commit automatisch Code analysiert oder formatiert wird. Installiere Husky mit folgendem Befehl:
-
-`npm install --save-dev husky`
-
-Initialisiere Husky:
-
-`npx husky`
-
-Ergänze folgendes Skript zur package.json, um Husky bei der Installation des Projekts zu aktivieren:
-
-`"scripts": { "prepare": "husky" }`
-
-Führe dann das Skript aus:
-
-`npm run prepare`
-
-**Erstellen eines Commit-Hooks für Commitlint:**
-
-`npx husky .husky/commit-msg 'npx --no-install commitlint --edit "$1"'`
-
-**Erstellen eines Pre-Commit-Hooks für lint-staged:**
-
-`npx husky .husky/pre-commit "npx lint-staged"`
-
-Detaillierte Informationen zur Husky-Integration findest du in der Husky-Dokumentation.
-
-## Aufgabe:Erstellen einer Demo App mittels Angular Material
-
-# Projektübersicht
-
-Dies ist eine Demo-Blog-Anwendung in Angular, erstellt von **Richard Bickard**. Das Projekt veranschaulicht verschiedene Angular-Konzepte wie:
-
--   Verwendung von Angular Material Components
--   Event-Binding mit `(click)`
--   Strukturelle Direktiven wie `*ngIf`, `*ngSwitch` und `*ngFor`
--   Dynamisches Klassen- und Stil-Binding mit `ngClass` und `ngStyle`
--   Zwei-Wege-Datenbindung mit `NgModel`
--   Ein Button zur Weiterleitung zu einem externen Repository
-
-## Funktionen
-
-### Implementierte Angular-Konzepte:
-
-1.  **Angular Material Components**: Das Projekt verwendet Angular Material-Komponenten wie Toolbar, Card und Buttons.
-2.  **Event-Binding**: Das `(click)`-Event-Binding wird verwendet, um verschiedene Aktionen auszulösen, wie das Umschalten der Sichtbarkeit und das Ändern von Farben.
-3.  **Strukturelle Direktiven**:
-    -   `*ngIf` wird verwendet, um Inhalte bedingt anzuzeigen.
-    -   `*ngSwitch` wird verwendet, um Inhalte basierend auf dem aktuellen Status dynamisch zu wechseln.
-    -   `*ngFor` wird verwendet, um eine Liste von Elementen durchzugehen und anzuzeigen.
-4.  **Dynamisches Klassen- und Stil-Binding**: `ngClass` und `ngStyle` werden verwendet, um das Erscheinungsbild von Elementen basierend auf dem Zustand der Komponente dynamisch zu ändern.
-5.  **Zwei-Wege-Datenbindung**: `NgModel` wird für Benutzereingaben implementiert, um eine Echtzeit-Datenbindung zwischen Ansicht und Komponente zu ermöglichen.
-
-## Projekt-Setup
+## Einrichtung und Installation
 
 ### Voraussetzungen
 
--   **Node.js**: Stelle sicher, dass Node.js installiert ist. Du kannst es [hier herunterladen](https://nodejs.org/).
--   **Angular CLI**: Installiere Angular CLI global, falls noch nicht geschehen:
-    
-    bash
-    
-    Code kopieren
-    
-    `npm install -g @angular/cli` 
-    
+- Node.js 16 oder höher
+- Angular CLI 18 oder höher
+- Java 8 oder höher (für JMeter)
+- Docker und Docker Compose (optional)
+- Azure-Konto (für Azure Load Testing)
 
 ### Installation
 
-1.  **Repository klonen**:
-    
-    bash
-    
-    Code kopieren
-    
-    `git clone https://github.com/hftm-in2022/angular-blog-app-richard-bickard.git` 
-    
-2.  **Wechsle in das Projektverzeichnis**:
-    
-    bash
-    
-    Code kopieren
-    
-    `cd angular-blog-app-richard-bickard` 
-    
-3.  **Installiere die Abhängigkeiten**:
-    
-    bash
-    
-    Code kopieren
-    
-    `npm install` 
-    
-4.  **Starte die Anwendung**:
-    
-    bash
-    
-    Code kopieren
-    
-    `ng serve` 
-    
-    Gehe dann im Browser zu `http://localhost:4200/`, um die Anwendung zu sehen.
-    
+1. Repository klonen:
+   ```bash
+   git clone https://github.com/username/angular-blog-app-richard-bickard.git
+   cd angular-blog-app-richard-bickard
+   ```
 
-## Features im Detail
+2. Abhängigkeiten installieren:
+   ```bash
+   npm install
+   ```
 
-1.  **Toggle Visibility**: Schaltet die Sichtbarkeit von bestimmten Inhalten um und zeigt an, ob der Benutzer online oder offline ist.
-2.  **Change Color**: Ändert die Farbe eines visuellen Indikators (z. B. ein Lämpchen) zufällig.
-3.  **Liste anzeigen**: Zeigt eine Liste von Aufgaben dynamisch an.
-4.  **Dynamische Klasse und Stile**: Verwendet `ngClass`, um Klassen basierend auf Benutzereingaben zu ändern, und `ngStyle`, um die Hintergrundfarbe eines Elements dynamisch anzupassen.
-5.  **Zwei-Wege-Datenbindung**: Ein Eingabefeld ermöglicht es, den Namen eines Benutzers einzugeben und ihn in Echtzeit anzuzeigen.
+3. Last-Test-Abhängigkeiten installieren:
+   ```bash
+   # JMeter herunterladen und installieren (wenn nicht Docker verwendet wird)
+   # Siehe load-testing/docs/setup-guide.md für detaillierte Anweisungen
+   ```
+
+4. Anwendung starten:
+   ```bash
+   npm start
+   ```
+
+## Last-Test-Funktionen
+
+Das Projekt umfasst folgende Last-Test-Funktionen:
+
+- **User Simulation**: Simulation von anonymen und authentifizierten Benutzern
+- **Skalierbare Tests**: Tests mit unterschiedlicher Anzahl gleichzeitiger Benutzer (10-100)
+- **Realistische Szenarien**: Mischung aus Lese- und Schreibvorgängen
+- **Performance-Metriken**: Erfassung von Antwortzeiten, Durchsatz und Fehlerraten
+- **Visualisierung**: Dashboards für die Anzeige von Testergebnissen
+- **CI/CD-Integration**: Automatisierte Last-Tests in der CI/CD-Pipeline
+
+## JMeter-Testplan
+
+Der JMeter-Testplan (`load-testing/jmeter/blog-app-test-plan.jmx`) definiert folgende Testszenarien:
+
+1. **Anonyme Benutzer**:
+   - Homepage besuchen
+   - Blog-Einträge abrufen
+   - Einzelne Blog-Einträge ansehen
+
+2. **Authentifizierte Benutzer**:
+   - Anmelden
+   - Blog-Einträge erstellen
+   - Blogs liken
+   - Kommentare hinzufügen
+
+Jeder Testplan kann mit unterschiedlichen Parametern konfiguriert werden:
+
+- Anzahl der virtuellen Benutzer
+- Ramp-up-Zeit
+- Testdauer
+- API- und Frontend-URLs
+
+### Ausführen von JMeter-Tests
+
+#### Lokal:
+```bash
+cd load-testing
+./scripts/run-local-test.sh dev  # für Entwicklungsumgebung
+./scripts/run-local-test.sh test # für Testumgebung
+./scripts/run-local-test.sh prod # für Produktionsumgebung
+```
+
+#### Mit Docker:
+```bash
+docker-compose up jmeter
+```
+
+## Azure Load Testing
+
+Die Azure Load Testing-Konfiguration (`load-testing/azure/load-test-config.yaml`) ermöglicht das Ausführen von Last-Tests in der Azure-Cloud. Dies bietet folgende Vorteile:
+
+- Skalierbarkeit: Tests mit Tausenden von virtuellen Benutzern
+- Geografische Verteilung: Tests aus verschiedenen Regionen
+- Detaillierte Metriken und Analysen
+- Integration mit Azure Monitor
+
+### Einrichtung von Azure Load Testing:
+
+1. Azure-Ressourcen erstellen:
+   ```bash
+   az login
+   az group create --name LoadTestResourceGroup --location westeurope
+   az load create --name BlogAppLoadTest --resource-group LoadTestResourceGroup --location westeurope
+   ```
+
+2. Test konfigurieren und ausführen (siehe `load-testing/docs/setup-guide.md` für Details)
+
+## Performance-Monitoring
+
+Das Projekt enthält integrierte Performance-Monitoring-Komponenten:
+
+- **App Insights Integration**: Erfassung von Client-seitigen Telemetriedaten
+- **Performance Metrics Service**: Sammlung und Analyse von Frontend-Metriken
+- **Performance Dashboard**: Visualisierung von Performance-Daten in Echtzeit
+- **HTTP Performance Interceptor**: Überwachung der API-Anfragen und -Antwortzeiten
+
+Um das Performance-Dashboard anzuzeigen, navigieren Sie zu `/performance` in der Anwendung (nur für Administratoren).
+
+## Docker-Unterstützung
+
+Das Projekt bietet Docker-Konfigurationen für die Ausführung von Last-Tests in isolierten Containern:
+
+- **JMeter-Container**: Führt Last-Tests aus
+- **InfluxDB-Container**: Speichert Testergebnisse
+- **Grafana-Container**: Visualisiert Ergebnisse in Echtzeiten
+- **Results-Analyzer-Container**: Analysiert Testergebnisse
+
+Um die gesamte Last-Test-Umgebung zu starten:
+```bash
+docker-compose up
+```
+
+## CI/CD-Integration
+
+Last-Tests sind in die CI/CD-Pipeline integriert:
+
+- **GitHub Actions**: Automatische Ausführung von Last-Tests bei Push auf den Main-Branch
+- **Performance Regression Detection**: Erkennung von Performance-Verschlechterungen
+- **Test Result Reports**: Automatische Generierung von Test-Berichten
+
+Die Konfiguration befindet sich in `.github/workflows/load-testing.yml`.
+
+## Beispiel-Ergebnisse
+
+Die Beispielergebnisse der Last-Tests zeigen:
+
+- Die Anwendung unterstützt bis zu 100 gleichzeitige Benutzer mit einer durchschnittlichen Antwortzeit von unter 500 ms
+- Die Fehlerrate bleibt unter 1% bei normaler Last (bis zu 50 Benutzer)
+- Der Durchsatz skaliert linear bis zu 50 Benutzern und beginnt dann abzuflachen
+- Die Datenbank-Operationen sind der Hauptengpass bei hoher Last
+
+Detaillierte Ergebnisse und Analysen finden Sie im Verzeichnis `load-testing/reports`.
+
+## Optimierungen basierend auf Last-Tests
+
+Basierend auf den Last-Test-Ergebnissen wurden folgende Optimierungen implementiert:
+
+1. **Frontend-Optimierungen**:
+   - Verbesserte Caching-Strategien für API-Anfragen
+   - Optimierte Change Detection in Angular-Komponenten
+   - Implementierung von virtuellen Listen für große Datenmengen
+
+2. **Backend-Optimierungen** (im Backend-Repository):
+   - Verbesserte Datenbankindizes
+   - Implementierung von Cache-Layern
+   - Optimierte API-Abfragen
+
+## Fazit und weitere Schritte
+
+Die implementierten Last-Tests und Performance-Monitoring-Tools ermöglichen eine kontinuierliche Überwachung und Verbesserung der Anwendungsleistung. Weitere geplante Schritte:
+
+- Automatisierte Performance-Budgets und Benachrichtigungen
+- Erweiterte Szenarien für Last-Tests
+- Integration von Real User Monitoring (RUM)
+- Implementierung von adaptiven Schwellenwerten basierend auf historischen Daten

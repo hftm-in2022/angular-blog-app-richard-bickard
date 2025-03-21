@@ -1,0 +1,15 @@
+{
+    "name": "jmeter-results-analyzer",
+    "version": "1.0.0",
+    "description": "Analyzer for JMeter test results",
+    "main": "analyze-results.js",
+    "scripts": {
+      "analyze": "node analyze-results.js"
+    },
+    "dependencies": {
+      "csv-parser": "^3.0.0",
+      "glob": "^8.1.0",
+      "chart.js": "^4.4.0",
+      "chartjs-node-canvas": "^4.1.6"
+    }
+  }

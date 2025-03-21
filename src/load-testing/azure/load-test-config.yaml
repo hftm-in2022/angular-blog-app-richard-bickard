@@ -1,0 +1,50 @@
+version: v0.1
+testName: blog-app-load-test
+testPlan: blog-app-test-plan.jmx
+description: "Performance test for Angular Blog Application"
+engineInstances: 2  # Anzahl der Instanzen des Lasttesttools
+
+configurationFiles:
+  - filename: users.csv
+    fileType: CSV_FILE
+  - filename: blog-posts.csv
+    fileType: CSV_FILE
+  - filename: dev.properties
+    fileType: PROPERTIES_FILE
+  - filename: test.properties
+    fileType: PROPERTIES_FILE
+  - filename: prod.properties
+    fileType: PROPERTIES_FILE
+
+testType: "LOAD"
+
+failureCriteria:
+  - avg(response_time_ms) > 1000          # Durchschnittliche Antwortzeit > 1 Sekunde
+  - percentage(error) > 5                 # Fehlerrate > 5%
+  - avg(requests_per_sec) < 10            # Anfragen pro Sekunde unter 10
+
+autoStop:
+  errorPercentage: 10                     # Stoppe den Test, wenn die Fehlerrate auf 10% steigt
+  timeSpan: 60                            # Beende den Test frühzeitig, wenn die Kriterien 60 Sekunden lang erfüllt sind
+
+environmentVariables:
+  - name: "API_URL"
+    value: "https://d-cap-blog-backend---v2.whitepond-b96fee4b.westeurope.azurecontainerapps.io"
+  - name: "BASE_URL"
+    value: "https://purple-water-0bc4adf03.4.azurestaticapps.net"
+  - name: "USERS"
+    value: "100"
+  - name: "RAMP_UP"
+    value: "60"
+  - name: "DURATION"
+    value: "300"
+
+subnetId: "" # optional
+splitAllCSVs: false
+
+quickStartTest:
+  testDuration: "120s"
+  engineInstances: 1
+  errorPercentage: 50
+  constantClientCount: 20 # Anzahl gleichzeitiger Benutzer
+  rampUpTime: "30s"

@@ -1,0 +1,401 @@
+{
+    "lenses": {
+      "0": {
+        "order": 0,
+        "parts": {
+          "0": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "colSpan": 12,
+              "rowSpan": 1
+            },
+            "metadata": {
+              "inputs": [],
+              "type": "Extension/HubsExtension/PartType/MarkdownPart",
+              "settings": {
+                "content": {
+                  "settings": {
+                    "content": "# Blog App Performance Dashboard",
+                    "title": "",
+                    "subtitle": "",
+                    "markdownSource": 1
+                  }
+                }
+              }
+            }
+          },
+          "1": {
+            "position": {
+              "x": 0,
+              "y": 1,
+              "colSpan": 4,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.LoadTestService/loadTests/${load_test_name}"
+                          },
+                          "name": "virtual_users",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.loadtestservice/loadtests",
+                          "metricVisualization": {
+                            "displayName": "Virtual Users"
+                          }
+                        }
+                      ],
+                      "title": "Virtual Users",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideSubtitle": false
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {}
+            }
+          },
+          "2": {
+            "position": {
+              "x": 4,
+              "y": 1,
+              "colSpan": 4,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.LoadTestService/loadTests/${load_test_name}"
+                          },
+                          "name": "requests_per_sec",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.loadtestservice/loadtests",
+                          "metricVisualization": {
+                            "displayName": "Requests per Second"
+                          }
+                        }
+                      ],
+                      "title": "Requests per Second",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideSubtitle": false
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {}
+            }
+          },
+          "3": {
+            "position": {
+              "x": 8,
+              "y": 1,
+              "colSpan": 4,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.LoadTestService/loadTests/${load_test_name}"
+                          },
+                          "name": "response_time_ms",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.loadtestservice/loadtests",
+                          "metricVisualization": {
+                            "displayName": "Response Time (ms)"
+                          }
+                        }
+                      ],
+                      "title": "Response Time (ms)",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideSubtitle": false
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {}
+            }
+          },
+          "4": {
+            "position": {
+              "x": 0,
+              "y": 4,
+              "colSpan": 6,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.LoadTestService/loadTests/${load_test_name}"
+                          },
+                          "name": "error_count",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.loadtestservice/loadtests",
+                          "metricVisualization": {
+                            "displayName": "Error Count"
+                          }
+                        }
+                      ],
+                      "title": "Error Count",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideSubtitle": false
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {}
+            }
+          },
+          "5": {
+            "position": {
+              "x": 6,
+              "y": 4,
+              "colSpan": 6,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.LoadTestService/loadTests/${load_test_name}"
+                          },
+                          "name": "error_percentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.loadtestservice/loadtests",
+                          "metricVisualization": {
+                            "displayName": "Error Percentage"
+                          }
+                        }
+                      ],
+                      "title": "Error Percentage",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideSubtitle": false
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {}
+            }
+          },
+          "6": {
+            "position": {
+              "x": 0,
+              "y": 7,
+              "colSpan": 12,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.LoadTestService/loadTests/${load_test_name}"
+                          },
+                          "name": "response_time_p50",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.loadtestservice/loadtests",
+                          "metricVisualization": {
+                            "displayName": "Response Time p50"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.LoadTestService/loadTests/${load_test_name}"
+                          },
+                          "name": "response_time_p90",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.loadtestservice/loadtests",
+                          "metricVisualization": {
+                            "displayName": "Response Time p90"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.LoadTestService/loadTests/${load_test_name}"
+                          },
+                          "name": "response_time_p95",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.loadtestservice/loadtests",
+                          "metricVisualization": {
+                            "displayName": "Response Time p95"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.LoadTestService/loadTests/${load_test_name}"
+                          },
+                          "name": "response_time_p99",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.loadtestservice/loadtests",
+                          "metricVisualization": {
+                            "displayName": "Response Time p99"
+                          }
+                        }
+                      ],
+                      "title": "Response Time Percentiles",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideSubtitle": false
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {}
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "model": {
+        "timeRange": {
+          "value": {
+            "relative": {
+              "duration": 24,
+              "timeUnit": 1
+            }
+          },
+          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+        }
+      }
+    }
+  }

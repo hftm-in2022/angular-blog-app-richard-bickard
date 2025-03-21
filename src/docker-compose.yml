@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # JMeter-Service für Last-Tests
+  jmeter:
+    build:
+      context: .
+      dockerfile: load-testing/Dockerfile
+      args:
+        TEST_PLAN: blog-app-test-plan.jmx
+        ENV_PROPERTIES: dev.properties
+    volumes:
+      - ./load-testing/results:/jmeter/results
+    environment:
+      - USERS=50
+      - RAMP_UP=30
+      - DURATION=180
+      - BASE_URL=https://purple-water-0bc4adf03.azurestaticapps.net
+      - API_URL=https://d-cap-blog-backend---v2.whitepond-b96fee4b.westeurope.azurecontainerapps.io
+    networks:
+      - load-test-network
+  
+  # Grafana für die Visualisierung von Testergebnissen
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./load-testing/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./load-testing/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - influxdb
+    networks:
+      - load-test-network
+  
+  # InfluxDB für die Speicherung von Testergebnissen
+  influxdb:
+    image: influxdb:latest
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb-storage:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=jmeter
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+    networks:
+      - load-test-network
+  
+  # Node.js-Container für die Analyse von Testergebnissen
+  results-analyzer:
+    build:
+      context: ./load-testing/scripts
+      dockerfile: Dockerfile.analyzer
+    volumes:
+      - ./load-testing/results:/app/results
+    depends_on:
+      - jmeter
+    command: "node analyze-results.js /app/results/*.jtl"
+    networks:
+      - load-test-network
+
+volumes:
+  grafana-storage:
+  influxdb-storage:
+
+networks:
+  load-test-network:
+    driver: bridge

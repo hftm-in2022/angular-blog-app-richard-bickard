@@ -1,0 +1,91 @@
+name: Performance Testing
+
+on:
+  workflow_dispatch:  # Manuelles Auslösen des Workflows
+  schedule:
+    - cron: '0 0 * * 1'  # Jeden Montag um Mitternacht (UTC)
+  push:
+    branches:
+      - main  # Nur auf dem Hauptzweig
+
+jobs:
+  load-testing:
+    name: Run Load Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      
+      - name: Setup JMeter
+        run: |
+          wget https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.2.tgz
+          tar -xzf apache-jmeter-5.6.2.tgz
+          echo "JMETER_HOME=$GITHUB_WORKSPACE/apache-jmeter-5.6.2" >> $GITHUB_ENV
+          echo "$GITHUB_WORKSPACE/apache-jmeter-5.6.2/bin" >> $GITHUB_PATH
+      
+      - name: Install JMeter Plugins
+        run: |
+          wget -O "$JMETER_HOME/lib/ext/jmeter-plugins-manager-1.10.jar" https://jmeter-plugins.org/get/
+          java -cp "$JMETER_HOME/lib/ext/jmeter-plugins-manager-1.10.jar" org.jmeterplugins.repository.PluginManagerCMDInstaller
+          "$JMETER_HOME/bin/PluginsManagerCMD.sh" install jpgc-graphs-basic jpgc-graphs-additional jpgc-synthesis
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - name: Install Dependencies for Analysis
+        run: |
+          npm install csv-parser
+      
+      - name: Create Results Directory
+        run: mkdir -p load-testing/results
+      
+      - name: Run JMeter Test
+        run: |
+          jmeter -n \
+            -t load-testing/jmeter/blog-app-test-plan.jmx \
+            -p load-testing/jmeter/environments/test.properties \
+            -l load-testing/results/results_test_$(date +%Y%m%d_%H%M%S).jtl \
+            -j load-testing/results/jmeter_test_$(date +%Y%m%d_%H%M%S).log \
+            -e -o load-testing/results/html_report
+      
+      - name: Analyze Results
+        run: |
+          RESULT_FILE=$(ls -t load-testing/results/*.jtl | head -1)
+          node load-testing/scripts/analyze-results.js $RESULT_FILE > load-testing/results/analysis_summary.txt
+      
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: load-test-results
+          path: |
+            load-testing/results/*.jtl
+            load-testing/results/*.json
+            load-testing/results/*.txt
+            load-testing/results/html_report
+      
+      # Optional: Deployment zu Azure Load Testing
+      - name: Azure Login
+        if: github.ref == 'refs/heads/main'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Run Azure Load Test
+        if: github.ref == 'refs/heads/main'
+        uses: azure/load-testing@v1
+        with:
+          resourceGroup: ${{ secrets.AZURE_RESOURCE_GROUP }}
+          loadTestResource: ${{ secrets.AZURE_LOAD_TEST_RESOURCE }}
+          loadTestConfigFile: load-testing/azure/load-test-config.yaml
+          env: |
+            API_URL=${{ secrets.API_URL }}
+            BASE_URL=${{ secrets.BASE_URL }}
+            USERS=50
+            RAMP_UP=30
+            DURATION=180
+          secrets: |
+            TestUserName=${{ secrets.TEST_USERNAME }}
+            TestPassword=${{ secrets.TEST_PASSWORD }}

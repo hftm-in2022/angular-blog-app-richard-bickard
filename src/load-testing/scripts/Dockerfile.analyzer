@@ -1,0 +1,14 @@
+FROM node:18-alpine
+
+# Arbeitsverzeichnis erstellen
+WORKDIR /app
+
+# Abhängigkeiten installieren
+COPY package.json .
+RUN npm install
+
+# Skripte kopieren
+COPY analyze-results.js .
+
+# Standard-Befehl
+CMD ["node", "analyze-results.js"]
